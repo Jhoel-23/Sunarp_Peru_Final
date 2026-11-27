@@ -1,0 +1,28 @@
+import React from 'react';
+const accesos=[
+ {tipo:'partida',numero:'01',etiqueta:'Consulta registral',titulo:'Consultar una partida',descripcion:'Accede al módulo de búsqueda de partidas registrales.',ruta:'/sistema/consulta-partida.html',accion:'Realizar consulta',icono:'⌕'},
+ {tipo:'solicitud',numero:'02',etiqueta:'Solicitudes digitales',titulo:'Iniciar un trámite',descripcion:'Registra la información de tu solicitud y continúa el procedimiento.',ruta:'/sistema/registro.html',accion:'Iniciar solicitud',icono:'▤'},
+ {tipo:'tramites',numero:'03',etiqueta:'Servicios disponibles',titulo:'Trámites en línea',descripcion:'Revisa los trámites disponibles y sus condiciones de atención.',ruta:'/sistema/tramites.html',accion:'Ver trámites',icono:'▦'},
+ {tipo:'seguimiento',numero:'04',etiqueta:'Estado de solicitudes',titulo:'Consultar mi solicitud',descripcion:'Revisa el estado de las solicitudes asociadas a tu cuenta.',ruta:'/sistema/consulta.html',accion:'Ver seguimiento',icono:'✓'}
+];
+export default function Inicio(){return <main id="contenido" className="inicio-institucional">
+ <section className="hero-principal"><div className="hero-principal__inner">
+  <div className="hero-principal__copy">
+   <span className="hero-kicker"><span className="hero-kicker__dot"/>SERVICIOS REGISTRALES EN LÍNEA</span>
+   <h1>Tus trámites, <em>más claros.</em> Tu información, siempre a mano.</h1>
+   <p>Su propiedad, su empresa, su historia: un portal para consultar servicios, presentar solicitudes y dar seguimiento a sus trámites en un solo lugar.</p>
+   <div className="hero-principal__acciones"><a className="accion-primaria" href="/sistema/registro.html">Iniciar una solicitud <span aria-hidden="true">↗</span></a><a className="accion-secundaria" href="/sistema/consulta-partida.html">Consultar partida <span aria-hidden="true">→</span></a></div>
+   <div className="hero-puntos"><span><i aria-hidden="true">✓</i> Acceso por perfiles</span><span><i aria-hidden="true">✓</i> Seguimiento de solicitudes</span></div>
+  </div>
+  <div className="hero-mock" aria-hidden="true"><div className="hero-mock__aura"/><div className="hero-mock__panel">
+    <div className="mock-top"><span className="mock-badge">RP</span><div><strong>Expediente digital</strong><small>Portal de servicios</small></div><span className="mock-menu">•••</span></div>
+    <div className="mock-label">RESUMEN DE TRÁMITE</div><div className="mock-line mock-line--wide"/><div className="mock-line"/><div className="mock-line mock-line--short"/>
+    <div className="mock-divider"/><div className="mock-step"><span>01</span><div><strong>Identificación</strong><small>Información del solicitante</small></div><b>✓</b></div><div className="mock-step"><span>02</span><div><strong>Solicitud</strong><small>Datos del trámite</small></div><b>✓</b></div><div className="mock-step mock-step--last"><span>03</span><div><strong>Seguimiento</strong><small>Consulta de estado</small></div><b>→</b></div>
+   </div><div className="hero-mock__floating"><span aria-hidden="true">✓</span><div><strong>Proceso organizado</strong><small>Consulta y seguimiento</small></div></div></div>
+ </div></section>
+ <div className="home-separador"><div className="home-separador__inner"><span>CONSULTAS</span><span aria-hidden="true">·</span><span>SOLICITUDES</span><span aria-hidden="true">·</span><span>SEGUIMIENTO</span><span aria-hidden="true">·</span><span>INFORMACIÓN REGISTRAL</span></div></div>
+ <section className="home-accesos home-wrap" aria-labelledby="accesos-titulo"><div className="home-cabecera"><div><span className="section-kicker">ACCESOS DIRECTOS</span><h2 id="accesos-titulo">¿Qué necesitas hacer hoy?</h2><p>Selecciona el servicio que deseas realizar.</p></div><a className="enlace-todos" href="/#servicios">Ver todos los servicios <span aria-hidden="true">↗</span></a></div>
+ <div className="accesos__lista row g-3">{accesos.map(a=><div className="col-12 col-md-6 col-xl-3" key={a.tipo}><article className="acceso h-100"><div className="acceso__arriba"><span className="acceso__icono" aria-hidden="true">{a.icono}</span><span className="acceso__numero">{a.numero}</span></div><p className="acceso__etiqueta">{a.etiqueta}</p><h3>{a.titulo}</h3><p className="acceso__descripcion">{a.descripcion}</p><a className="acceso__enlace" href={a.ruta}>{a.accion}<span aria-hidden="true">↗</span></a></article></div>)}</div></section>
+ <section className="home-destacado"><div className="home-wrap home-destacado__inner"><div><span className="section-kicker section-kicker--claro">PORTAL DE ATENCIÓN</span><h2>Información y trámites<br/>en el mismo lugar.</h2><p>Consulta los requisitos antes de iniciar una solicitud. El acceso y las operaciones dependen de tu perfil de usuario.</p><a href="/#guia" className="destacado-enlace">Revisar guía de trámites <span aria-hidden="true">↗</span></a></div><div className="home-destacado__lista"><div><span>01</span><p><strong>Infórmate</strong><small>Revisa los servicios y sus requisitos.</small></p></div><div><span>02</span><p><strong>Accede</strong><small>Ingresa con tu cuenta del sistema.</small></p></div><div><span>03</span><p><strong>Consulta</strong><small>Visualiza el estado de tus solicitudes.</small></p></div></div></div></section>
+ <section className="home-ayuda home-wrap"><div className="home-ayuda__icono" aria-hidden="true">?</div><div><span className="section-kicker">AYUDA Y ORIENTACIÓN</span><h2>¿Necesitas orientación?</h2><p>Encuentra información de contacto y oficinas en el módulo de atención.</p></div><a className="accion-primaria" href="/sistema/contacto.html">Sedes y contacto <span aria-hidden="true">↗</span></a></section>
+ </main>}

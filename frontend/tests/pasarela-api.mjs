@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import vm from 'node:vm';
+const solicitudes=[];
+const ctx=vm.createContext({});
+const api=new vm.SyntheticModule(['api'],function(){this.setExport('api',async(ruta,opciones)=>{solicitudes.push({ruta,opciones});return {aprobado:true,codigo:'OP-DEMO',solicitudes:[],solicitud:{id:7}}})},{context:ctx});
+const codigo=await fs.readFile(new URL('../public/sistema/js/pago/pasarela.js',import.meta.url),'utf8');
+assert.doesNotMatch(codigo,/import[^\n]*neon-config|const\s+DATABASE_URL|SELECT[^\n]*FROM|sql`/);
+const mod=new vm.SourceTextModule(codigo,{context:ctx});await mod.link(()=>api);await api.evaluate();await mod.evaluate();
+const p=mod.namespace;
+await p.obtenerRegistro(7);
+await p.listarPendientesCliente(1);
+await p.pagarConTarjeta({registro:{id:7},numero:'4111111111111111',mes:12,anio:2029,cvv:'123',marca:'Visa'});
+await p.pagarConBilletera({registro:{id:7},proveedor:'andipay',celular:'987654321',codigoAprobacion:'123456'});
+assert.deepEqual(solicitudes.map(x=>x.ruta),['/pasarela/solicitudes/7','/pasarela/pendientes','/pasarela/tarjeta','/pasarela/billetera']);
+assert.equal(solicitudes[2].opciones.body.solicitudId,7);
+console.log('OK: módulo de pagos usa la API y ya no consulta Neon desde el navegador.');

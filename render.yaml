@@ -1,0 +1,24 @@
+# Blueprint opcional. También puedes crear un Web Service manualmente desde Render.
+# Debe desplegarse SOLO el backend; el frontend se publica en Vercel.
+services:
+  - type: web
+    name: sunarp-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/salud
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SIMULADOR_PAGOS
+        value: "false"

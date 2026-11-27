@@ -1,0 +1,45 @@
+@import url("base.css");
+main {
+  max-width: 800px;
+}
+
+#resumen-monto {
+  font-size: 1.8rem;
+}
+
+.vista-tarjeta {
+  background: linear-gradient(130deg, var(--marino), var(--marino-suave));
+  color: white;
+  padding: 23px;
+  border-radius: 14px;
+  margin-block: 18px;
+  min-height: 160px;
+  transition: transform .55s;
+}
+
+.vista-tarjeta strong {
+  display: block;
+  font-size: 1.25rem;
+  letter-spacing: .15em;
+  margin: 16px 0;
+}
+
+.vista-tarjeta span:last-child {
+  float: right;
+}
+
+.vista-tarjeta.girada {
+  transform: rotateY(180deg);
+}
+
+.vista-tarjeta.girada > * {
+  visibility: hidden;
+}
+
+.vista-tarjeta.girada::after {
+  content: 'CVV · reverso de tarjeta ficticia';
+  display: block;
+  transform: rotateY(180deg);
+}
+
+.estado-pasarela{padding:1rem;border-left:4px solid #8c6a3f;background:#fdf5de;color:#493b26;max-width:900px;margin:1rem 0 1.25rem;line-height:1.55}.estado-pasarela--activo{border-color:#147960;background:#e9f7f1;color:#184c3d}.estado-pasarela--inactivo{border-color:#a52c23;background:#fbe9e5;color:#682b24}
